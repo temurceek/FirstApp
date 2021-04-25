@@ -9,17 +9,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Future _openDetails() async{
+    Navigator.of(context).push(new MaterialPageRoute(
+        builder: (BuildContext context) {
+          return new DetailPage(input: "Go home");
+        }
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: TextButton(
-          style: TextButton.styleFrom(
-            primary: Colors.blue,
-            onSurface: Colors.red,
-          ),
+        child: ElevatedButton(
+
           onPressed: () {
-            Navigator.pushNamed(context, DetailPage.id);
+            _openDetails();
           },
           child: Text('Details'),
         )
