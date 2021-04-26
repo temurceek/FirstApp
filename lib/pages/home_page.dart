@@ -10,12 +10,23 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  String data = "Details";
   Future _openDetails() async{
-    Navigator.of(context).push(new MaterialPageRoute(
+    Map results = await Navigator.of(context).push(new MaterialPageRoute(
         builder: (BuildContext context) {
-          return new DetailPage(input: "Go home");
+          return new DetailPage(
+            input: "Flutter",
+            age: 22,
+          );
         }
     ));
+    if(results != null && results.containsKey("name") && results.containsKey("age")){
+      setState(() {
+        data = results["name"] + " " + results["age"].toString();
+      });
+    } else {
+      print("Nothing");
+    }
   }
 
   @override
@@ -27,7 +38,14 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             _openDetails();
           },
-          child: Text('Details'),
+
+
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.black)
+          ),
+          child: Text(data,
+            style: TextStyle(color: Colors.amberAccent),
+          ),
         )
         ),
       );

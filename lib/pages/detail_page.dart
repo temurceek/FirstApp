@@ -5,7 +5,8 @@ import 'home_page.dart';
 class DetailPage extends StatefulWidget {
 
   final String input;
-  DetailPage({this.input});
+  final int age;
+  DetailPage({this.input, this.age});
 
   static final String id = "detail_page";
   @override
@@ -17,8 +18,17 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(widget.input),
+
+        child: ElevatedButton(
+          onPressed: (){
+            Navigator.of(context).pop({"name" : "Dart", "age" : 33});
+          },
+
+          child: Text(widget.input + " " + widget.age.toString()),
+        ),
+
       ),
+
     );
   }
 }
